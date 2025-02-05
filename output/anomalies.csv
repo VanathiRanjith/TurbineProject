@@ -1,1 +1,1 @@
-timestamp,turbine_id,wind_speed,wind_direction,power_output,file_source,mean,std,anomaly
+turbine_id,power_output,z_score,mean,std,anomaly

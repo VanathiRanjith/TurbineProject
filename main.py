@@ -1,25 +1,29 @@
-from turbinePipeline import load_data, clean_data, compute_statistics, detect_anomalies, store_data, visualize_data
+from turbinePipeline import load_data, clean_data, compute_statistics, detect_anomalies, remove_outliers, store_data, visualize_anomalies, OUTPUT_DIR
 
 def main():
     print("Loading data...")
     df = load_data()
 
     print("Cleaning data...")
-    clean_df = clean_data(df)
+    df = clean_data(df)
+
+    print("Removing outliers...")
+    df = remove_outliers(df)
 
     print("Computing statistics...")
-    stats_df = compute_statistics(clean_df)
+    stats = compute_statistics(df)
 
     print("Detecting anomalies...")
-    anomalies_df = detect_anomalies(clean_df)
+    anomalies = detect_anomalies(df)
 
-    print("Storing data...")
-    store_data(clean_df, stats_df, anomalies_df)
+    print("Storing results...")
+    store_data(df, stats, anomalies)
 
-    print("Generating visualizations...")
-    visualize_data(clean_df, anomalies_df, stats_df)
+    print("Generating anomaly visualization...")
+    visualize_anomalies(df, anomalies)
 
-    print("Pipeline execution completed!")
+    print("Pipeline execution complete.")
+
 
 if __name__ == "__main__":
     main()
