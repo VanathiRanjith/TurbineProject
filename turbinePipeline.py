@@ -53,8 +53,8 @@ def detect_anomalies(df):
 
     # **Lower the threshold to 1.5 standard deviations instead of 2.0**
     df["anomaly"] = (df["std"] > 0) & (
-            (df["power_output"] < (df["mean"] - 1.5 * df["std"])) |
-            (df["power_output"] > (df["mean"] + 1.5 * df["std"]))
+            (df["power_output"] < (df["mean"] - 2 * df["std"])) |
+            (df["power_output"] > (df["mean"] + 2 * df["std"]))
     )
 
     # Debugging: Print rows that are marked as anomalies

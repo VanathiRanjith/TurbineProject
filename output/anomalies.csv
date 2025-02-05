@@ -1,3 +1,1 @@
-turbine_id,power_output,mean,std,anomaly
-1,100,28.4,40.04122875237472,True
-2,200,56.4,80.28262576672489,True
+timestamp,turbine_id,wind_speed,wind_direction,power_output,file_source,mean,std,anomaly

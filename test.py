@@ -44,28 +44,30 @@ def test_compute_statistics(sample_data):
     assert "max" in stats_df.columns, "Max power output should be included."
     assert "mean" in stats_df.columns, "Mean power output should be included."
 
-def test_detect_anomalies(sample_data):
+def test_detect_anomalies():
     """
-    Test that detect_anomalies() correctly identifies anomalies.
+    Test that detect_anomalies() correctly identifies turbines outside 2 standard deviations from the mean.
     """
-    # Create a dataset where anomalies should exist
+    # Create a sample dataset where anomalies exist
     test_df = pd.DataFrame({
         'turbine_id': [1, 1, 1, 1, 1, 2, 2, 2, 2, 2],
-        'power_output': [10, 12, 11, 100, 9, 20, 22, 21, 200, 19]  # 100 and 200 should be anomalies
+        'power_output': [10, 12, 11, 100, 9, 20, 22, 21, 200, 19]  # 100 and 200 are anomalies
     })
 
-    print("\nInput Data for Anomaly Detection:")
-    print(test_df)
-
+    # Run the anomaly detection function
     anomalies_df = detect_anomalies(test_df)
 
-    print("\nDetected anomalies:\n", anomalies_df)  # Debugging output
+    # Print debugging information
+    print("\nInput Data for Anomaly Detection:")
+    print(test_df)
+    print("\nDetected Anomalies:")
+    print(anomalies_df)
 
     # Ensure anomalies are detected
     assert anomalies_df is not None, "Anomalies DataFrame should not be None."
     assert not anomalies_df.empty, "Anomalies should be detected."
-    assert 100 in anomalies_df["power_output"].values, "Value 100 should be an anomaly."
-    assert 200 in anomalies_df["power_output"].values, "Value 200 should be an anomaly."
+    assert 100 in anomalies_df["power_output"].values, "Value 100 should be flagged as an anomaly."
+    assert 200 in anomalies_df["power_output"].values, "Value 200 should be flagged as an anomaly."
 
 def test_store_data(sample_data):
     """
