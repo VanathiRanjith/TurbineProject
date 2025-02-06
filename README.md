@@ -40,7 +40,6 @@ This project is a **scalable and testable data processing pipeline** for analyzi
 
 ## **Setup & Installation**
 ### **Prerequisites**
-- **Python 3.10+**
 - Required libraries:
   ```sh
   pip install pandas numpy dask matplotlib sqlite3 pytest
